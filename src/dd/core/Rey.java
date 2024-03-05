@@ -5,7 +5,7 @@ import java.util.Random;
 class Rey extends Personaje {
     Rey(String nombre) {
         super(nombre);
-        salud = 2000;
+        salud = 1500;
     }
 
     public boolean vivo = true;

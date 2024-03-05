@@ -7,30 +7,6 @@ public class ControlBasico {
     public Personaje[] ejercitoHumanos;
     public Personaje[] ejercitoTrolls;
 
-    /*
-    public static void main(String[] args) {
-        System.out.println("Hola Dungeons & Dragons");
-
-        Personaje p1 = new Rey("Arturo");
-        p1.setAtaque(new AtaqueEspada());
-        Personaje p2 = new Troll("Rey Troll");
-        p2.setAtaque(new AtaqueCuchillo());
-
-        System.out.println(p1.ataque.getValorBase());
-
-        while (p1.salud > 0 & p2.salud > 0) {
-            for (int ataqes : p1.ataca(p2)) {
-                System.out.println(p1.nombre + " ataca a " + p2.nombre + ", haciendo " + ataqes + " de daño!");
-            }
-            for (int ataqes : p2.ataca(p1)) {
-                System.out.println(p2.nombre + " ataca a " + p1.nombre + ", haciendo " + ataqes + " de daño!");
-            }
-        }
-        System.out.println();
-        System.out.println(p1.nombre+": "+p1.salud + " acabó con " + p2.nombre+": "+p2.salud);
-    }
-     */
-
     public ControlBasico(int Humanos, int Trolls){
         crearEjercito(Humanos, Trolls);
         combate(ejercitoHumanos,ejercitoTrolls);
@@ -70,8 +46,12 @@ public class ControlBasico {
         while (trollsVivos & humanosVivos){
             int humanoRandom = r.nextInt(ejercitoHumanos.length);
             int trollRandom = r.nextInt(ejercitoTrolls.length);
-            ejercitoHumanos[turnoHumanos].ataca(ejercitoTrolls[trollRandom]);
-            ejercitoTrolls[turnoTrolls].ataca(ejercitoHumanos[humanoRandom]);
+
+            if (ejercitoHumanos[turnoHumanos].salud > 0)
+                ejercitoHumanos[turnoHumanos].ataca(ejercitoTrolls[trollRandom]);
+
+            if (ejercitoTrolls[turnoTrolls].salud > 0)
+                ejercitoTrolls[turnoTrolls].ataca(ejercitoHumanos[humanoRandom]);
 
             // control de los turnos
             if (turnoHumanos+1 == ejercitoHumanos.length){
@@ -98,10 +78,16 @@ public class ControlBasico {
             }else if ( ejercitosVivos(ejercitoHumanos,ejercitoTrolls).equalsIgnoreCase("Trolls Muertos") ){
                 System.out.println("El Ejercito Troll a perdido!");
                 for (int i=0; i<ejercitoHumanos.length; i++){
-                    System.out.println(ejercitoHumanos[i].nombre + " tiene " + ejercitoHumanos[i].salud + " de vida.");
+                    if (ejercitoHumanos[i].salud <= 0)
+                        System.out.println(ejercitoHumanos[i].nombre + " ha muerto en la battalla.");
+                    else
+                        System.out.println(ejercitoHumanos[i].nombre + " tiene " + ejercitoHumanos[i].salud + " de vida.");
                 }
                 for (int i=0; i<ejercitoTrolls.length; i++){
-                    System.out.println(ejercitoTrolls[i].nombre + " tiene " + ejercitoTrolls[i].salud + " de vida.");
+                    if (ejercitoTrolls[i].salud <= 0)
+                        System.out.println(ejercitoTrolls[i].nombre + " ha muerto en la batalla.");
+                    else
+                        System.out.println(ejercitoTrolls[i].nombre + " tiene " + ejercitoTrolls[i].salud + " de vida.");
                 }
                 break;
             }

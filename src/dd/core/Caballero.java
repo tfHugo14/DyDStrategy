@@ -5,7 +5,7 @@ import java.util.Random;
 class Caballero extends Personaje {
     Caballero(String nombre) {
         super(nombre);
-        salud = 1500;
+        salud = 1000;
     }
 
     public boolean vivo = true;

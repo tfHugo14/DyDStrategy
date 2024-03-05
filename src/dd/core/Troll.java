@@ -5,7 +5,7 @@ import java.util.Random;
 class Troll extends Personaje {
     Troll(String nombre) {
         super(nombre);
-        salud = 1000;
+        salud = 500;
     }
 
     public boolean vivo = true;

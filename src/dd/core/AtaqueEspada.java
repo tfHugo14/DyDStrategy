@@ -10,7 +10,7 @@ class AtaqueEspada implements Ataque {
 
     @Override
     public void lanzarAtaque(Personaje atacante, Personaje enemigo, int valorAtaque) {
-        if (enemigo.vivo == true){
+        if (enemigo.salud > 0){
             String verde = "\u001B[32m";
             String rojo = "\u001B[31m";
             String azul = "\u001B[34m";
